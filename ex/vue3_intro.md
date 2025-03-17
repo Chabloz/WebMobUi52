@@ -69,4 +69,4 @@ Ajoutez un **composant principal** qui gérera l’ensemble de votre application
 
 ### **Améliorations possibles**  
 ✅ Ajouter une gestion plus avancée des erreurs (ex : valeurs invalides, [borne des entiers en JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)).  
-✅ Améliorer l’UX (ex : animations, validations en temps réel).  
+✅ Améliorer l’UX (ex : animations, validations en temps réel avec feedback utilisateur).  
