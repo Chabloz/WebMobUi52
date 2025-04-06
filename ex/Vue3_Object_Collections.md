@@ -79,3 +79,9 @@ Données disponibles au format JSON :
 - 🌓 Changement de thème **clair/sombre** :
   - Thème initial basé sur la préférence système.
   - Persistance de la préférence utilisateur via `localStorage`.
+
+## **💡 Conseils :**
+
+- Il est conseillé de ne pas utiliser le composant de table de Quasar afin de mieux apprendre la gestion d'affichage d'une collection.
+- Vous pouvez générer le layout et les couleurs de thème via les outils disponibles sur le site de Quasar : https://quasar.dev/style/theme-builder et https://quasar.dev/layout-builder/)
+- Il est bien sûr possible d’utiliser un autre framework UI que Quasar si souhaité.
