@@ -28,7 +28,12 @@ export default defineConfig({
       template: { transformAssetUrls }
     }),
     quasar(),
-  ]
+  ],
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
 });
 ```
 
