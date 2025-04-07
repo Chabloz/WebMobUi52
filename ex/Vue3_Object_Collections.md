@@ -1,8 +1,8 @@
-# **📆 Application d'Horaires avec Vue.js + Quasar**
+# **📆 Application des Horaires**
 
 ## **⚙️ Mise en place**
 
-L’objectif est de concevoir une application web responsive pour consulter des horaires de cours, en utilisant **Vue.js**, **Vite** et **Quasar**.
+L’objectif est de concevoir une application web pour consulter des horaires de cours, en utilisant **Vue.js**, **Vite** et **Quasar**.
 
 Commencez par créer un nouveau projet via Vite et installez les dépendances nécessaires :
 
