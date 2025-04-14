@@ -52,7 +52,13 @@ export function fetchJson(options) {
   if (typeof url !== 'string') throw new Error('The URL must be a string.');
   const theMethod = method ? method.toUpperCase() : (data ? 'POST' : 'GET');
 
-  let fullUrl = (baseUrl ?? defaultBaseUrl) + (url.startsWith('/') ? url : '/' + url);
+  let fullUrl;
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    fullUrl = url;
+  } else {
+    fullUrl = (baseUrl ?? defaultBaseUrl) + (url.startsWith('/') ? url : '/' + url);
+  }
+
   if (theMethod === 'GET' && data) {
     const queryString = new URLSearchParams(data).toString();
     fullUrl += '?' + queryString;
