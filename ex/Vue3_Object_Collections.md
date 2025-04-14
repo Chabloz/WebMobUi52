@@ -90,3 +90,18 @@ Données disponibles au format JSON :
 - Il est conseillé de ne pas utiliser le composant de table de Quasar afin de mieux apprendre la gestion d'affichage d'une collection.
 - Vous pouvez générer le layout et les couleurs de thème via les outils disponibles sur le site de Quasar : https://quasar.dev/style/theme-builder et https://quasar.dev/layout-builder/)
 - Il est bien sûr possible d’utiliser un autre framework UI que Quasar si souhaité.
+- Commencez par une version avec les données statiques puis utilisez un fetch par la suite. Pour évitez les erreurs CORS, il vous faudra mettre un place un reverse proxy. Vous pouvez le faire avec vite dans le fichier vite.config.js comme ceci
+
+```js
+server: {
+    proxy: {
+      '/api/schedule/': {
+        target: 'https://chabloz.eu/files/horaires/',
+        changeOrigin: true,
+        rewrite: path => path.replace('/api/schedule/', '')
+      }
+    }
+  }
+```
+
+Pour votre fetch, vous pouvez utiliser le module disponible ici afin de gérer correctement les cas d'erreurs possible: [fetchJson.js](../utils/fetchJson.js)
