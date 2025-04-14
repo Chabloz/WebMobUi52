@@ -105,3 +105,4 @@ server: {
 ```
 
 Pour votre fetch, vous pouvez utiliser le module disponible ici afin de gérer correctement les cas d'erreurs possible: [fetchJson.js](../utils/fetchJson.js)
+ainsi que le composable :  [useFetchJson](../composables/useFetchJson.js)
