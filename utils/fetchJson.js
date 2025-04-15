@@ -46,7 +46,7 @@ export function fetchJson(options) {
     method = null,
     headers = {},
     timeout = 5000,
-    baseUrl = '',
+    baseUrl = null,
   } = options;
 
   if (typeof url !== 'string') throw new Error('The URL must be a string.');
