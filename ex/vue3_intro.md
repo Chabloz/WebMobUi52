@@ -30,7 +30,9 @@ Nous utiliserons **Kelvin** comme unité de base (puisque c'est l’unité du [S
 1. Utilisez la fonction [`ref`](https://vuejs.org/api/reactivity-core.html#ref) pour stocker la température de base dans une variable réactive.  
 2. Utilisez [`computed`](https://vuejs.org/api/reactivity-core.html#computed) pour calculer automatiquement les valeurs en K, °C et °F à partir de la température de base.  
 3. Ajoutez un [`watch`](https://vuejs.org/api/reactivity-core.html#watch) pour afficher ces trois valeurs dans la console à chaque modification de la température en Kelvin.  
-4. Si l'on modifie la valeur en °C ou °F, les autres doivent se mettre à jour automatiquement. Pour cela, utilisez des **getters** et **setters** dans vos *computed properties*.  
+4. Si l'on modifie la valeur en °C ou °F, les autres doivent se mettre à jour automatiquement. Pour cela, utilisez des **getters** et **setters** dans vos *computed properties*.
+
+Pour tester, vous pouvez modifier la température de base grâce à un setTimeout pour simuler une action dans le temps.
 
 ---
 
