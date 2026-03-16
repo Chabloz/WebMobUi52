@@ -9,11 +9,9 @@ Créez un dossier pour le travail pratique et faites l'înstallation de Vite et 
 
 ```bash
 npm create vite@latest ./ -- --template vue
-npm install
-npm run dev
 ```
 
-La dernière ligne lance un serveur HTTP de développement local avec "hot reloading" et d'autres fonctionnalités de Vite.  
+Cela lance un serveur HTTP de développement local avec "hot reloading" et d'autres fonctionnalités de Vite.  
 
 ---
 
