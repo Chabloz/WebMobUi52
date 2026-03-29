@@ -1,38 +1,73 @@
-import { ref } from 'vue';
+import { onScopeDispose, ref } from 'vue';
 import { fetchJson } from '@/utils/fetchJson';
 
 /**
- * Composable to fetch JSON data and expose refs along with abort functionality
+ * Composable to fetch JSON data with optional immediate execution.
+ * This composable does not handle concurrent requests
+ * Use multiple instances of this composable if you need to handle multiple concurrent requests.
  *
- * @param {Object|string} options - Either a configuration object or a URL string
- * @param {string} [options.url] - The URL to fetch (mandatory if using an object)
- * @param {object} [options.data=null] - The data to send (if any)
- * @param {string} [options.method=null] - The method to use (GET, POST, PUT, DELETE, etc.)
- *   If not specified, it will be GET if data is null, POST otherwise
- * @param {object} [options.headers={}] - The additional headers to send (if any)
+ * @param {Object|string} options - Either a configuration object with request parameters, or a URL string (in which case defaults are applied to other parameters)
+ * @param {string} options.url - Relative request URL (required)
+ * @param {Object|null} [options.data=null] - Data to send (body or query string)
+ * @param {string|null} [options.method=null] - HTTP method (GET, POST, etc.)
+ * @param {Object} [options.headers={}] - Additional headers
  * @param {number} [options.timeout=5000] - Timeout in milliseconds
- * @param {string} [options.baseUrl=null] - The base URL to use for the request (optional)
- * @returns {Object} An object with reactive refs and the abort function
- * @property {Ref} data - The fetched data
- * @property {Ref} error - The error object (if any)
- * @property {Ref} loading - Indicates loading state
- * @property {Function} abort - Function to abort the request
+ * @param {string|null} [options.baseUrl=null] - Custom base URL for this request
+ * @param {boolean} [options.immediate=true] - Fetch immediately on setup.
+ * @returns {Object} Reactive refs and control functions.
  */
 export function useFetchJson(options) {
   const data = ref(null);
   const error = ref(null);
-  const loading = ref(true);
+  const loading = ref(false);
 
-  const { request, abort } = fetchJson(options);
-  request
-    .then(res => {
-      data.value = res;
-      loading.value = false;
-    })
-    .catch(err => {
+  const fetchOptions = typeof options === 'string' ? { url: options } : options;
+  const immediate = fetchOptions.immediate !== false;
+  let curAbort = () => {};
+  let currentRequestId = 0;
+
+  function execute(dataOverride = undefined) {
+    curAbort();
+
+    const requestId = ++currentRequestId;
+    loading.value = true;
+    data.value = null;
+    error.value = null;
+
+    const finalOptions = { ...fetchOptions };
+    if (dataOverride !== undefined) finalOptions.data = dataOverride;
+
+    let request;
+
+    try {
+      const { request: newRequest, abort: newAbort } = fetchJson(finalOptions);
+      request = newRequest;
+      curAbort = newAbort;
+    } catch (err) {
       error.value = err;
       loading.value = false;
-    });
+      curAbort = () => {};
+      return Promise.resolve();
+    }
 
-  return { data, error, loading, abort };
+    return request
+      .then(res => {
+        if (requestId === currentRequestId) data.value = res;
+      })
+      .catch(err => {
+        if (requestId === currentRequestId) error.value = err;
+      })
+      .finally(() => {
+        if (requestId === currentRequestId) {
+          loading.value = false;
+          curAbort = () => {};
+        }
+      });
+  };
+
+  onScopeDispose(() => curAbort());
+
+  if (immediate) execute();
+
+  return { data, error, loading, execute, abort: () => curAbort() };
 }
