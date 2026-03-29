@@ -61,12 +61,15 @@ export function fetchJson(options) {
 
   if (theMethod === 'GET' && data) {
     const queryString = new URLSearchParams(data).toString();
-    fullUrl += '?' + queryString;
+    if (queryString !== '') {
+      fullUrl += (fullUrl.includes('?') ? '&' : '?') + queryString;
+    }
   }
 
   const allHeaders = { ...defaultHeaders, ...headers };
 
   const controller = new AbortController();
+  let abortedExternally = false;
   const timeoutId = setTimeout(() => controller.abort(), timeout);
   const signal = controller.signal;
 
@@ -101,16 +104,21 @@ export function fetchJson(options) {
       })
       .catch(err => {
         clearTimeout(timeoutId);
-        if (err.name === 'AbortError') {
-          reject({ status: 0, statusText: 'Request aborted (timeout)', data: null });
+        if (abortedExternally) {
+          reject({ status: 499, statusText: 'Client Closed Request', data: null });
+        } else if (err.name === 'AbortError') {
+          reject({ status: 408, statusText: 'Request Timeout', data: null });
         } else {
-          reject({ status: 0, statusText: err.message || 'Network error', data: null });
+          reject({ status: 0, statusText: err.message || 'Unknown Network Error', data: null });
         }
       });
   });
 
   return {
     request,
-    abort: () => controller.abort(),
+    abort: () => {
+      abortedExternally = true;
+      controller.abort();
+    },
   };
 }
