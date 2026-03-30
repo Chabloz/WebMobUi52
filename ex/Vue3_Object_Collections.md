@@ -78,10 +78,10 @@ Données disponibles au format JSON :
 
 ## **✨ Fonctionnalités attendues**
 
-- Affichage des horaires avec une interface claire et structurée (et un peu moins "brute" que dans l'app actuelle 😅)
+- Affichage des horaires avec une interface claire et structurée.
 - Chargement dynamique des données (via `fetch`) ou à partir d’un fichier local.
-- 🔍 Barre de recherche pour filtrer les cours par nom.
-- 🌓 Changement de thème **clair/sombre** :
+- Barre de recherche pour filtrer les cours par nom.
+- Changement de thème **clair/sombre** :
   - Thème initial basé sur la préférence système.
   - Persistance de la préférence utilisateur via `localStorage`.
 
