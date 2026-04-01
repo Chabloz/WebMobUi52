@@ -1,58 +1,32 @@
 import { computed, onBeforeUnmount, onMounted, shallowRef } from 'vue';
 
-function normalizeHash(hash) {
-  return hash.startsWith('#') ? hash : `#${hash}`;
-}
-
 export function useHashRoute(routes) {
   const defaultRoute = routes[0];
   const currentRoute = shallowRef(defaultRoute);
 
-  function getRouteByHash(hash) {
-    const normalizedHash = normalizeHash(hash || defaultRoute.hash);
-    return routes.find((route) => route.hash === normalizedHash) || defaultRoute;
-  }
-
   function syncRouteFromUrl() {
-    currentRoute.value = getRouteByHash(window.location.hash);
+    const hash = window.location.hash;
+    currentRoute.value = routes.find(route => route.hash === hash) ?? defaultRoute;
   }
 
-  function navigateTo(hash, replace = false) {
-    const route = getRouteByHash(hash);
-    const url = `${window.location.pathname}${window.location.search}${route.hash}`;
-
-    if (replace === true) {
-      window.history.replaceState(null, '', url);
-      syncRouteFromUrl();
-      return;
-    }
-
-    window.history.pushState(null, '', url);
-
+  function navigateTo(hash) {
+    window.history.pushState(null, '', hash);
     syncRouteFromUrl();
   }
 
   onMounted(() => {
     if (window.location.hash === '') {
-      navigateTo(defaultRoute.hash, true);
-    } else {
-      syncRouteFromUrl();
+      window.history.replaceState(null, '', defaultRoute.hash);
     }
-
-    window.addEventListener('hashchange', syncRouteFromUrl);
+    syncRouteFromUrl();
     window.addEventListener('popstate', syncRouteFromUrl);
   });
 
   onBeforeUnmount(() => {
-    window.removeEventListener('hashchange', syncRouteFromUrl);
     window.removeEventListener('popstate', syncRouteFromUrl);
   });
 
   const currentComponent = computed(() => currentRoute.value.component);
 
-  return {
-    currentComponent,
-    currentRoute,
-    navigateTo,
-  };
+  return { currentComponent, currentRoute, navigateTo };
 }
