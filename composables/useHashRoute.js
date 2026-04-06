@@ -27,6 +27,7 @@ export function useHashRoute(routes) {
   });
 
   const currentComponent = computed(() => currentRoute.value.component);
+  syncRouteFromUrl();
 
   return { currentComponent, currentRoute, navigateTo };
 }
