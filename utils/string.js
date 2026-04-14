@@ -9,7 +9,7 @@ export function normalizeForSearch(text) {
   return text
     .toLowerCase()
     .normalize('NFKD') // Decompose characters with diacritics
-    .replace(/[\u0300-\u036f]/g, ''); // Remove diacritical marks
+    .replace(/\p{Mn}/gu, ''); // Remove diacritical marks
 }
 
 export function equals(str1, str2) {
