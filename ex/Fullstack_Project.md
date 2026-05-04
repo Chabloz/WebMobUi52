@@ -132,7 +132,7 @@ Les informations ci-dessous sont à titre indicatif et peuvent être adaptées.
 | 4 | Gestion des paramètres du sondage (brouillon, choix multiples, résultats publics, durée)
 | 5 | Récupération simple du lien de partage contenant le token et affichage d'un sondage accessible via ce lien
 | 6 | Soumission d'un vote valide depuis le frontend, avec unicité correctement garantie pour les sondages à choix unique
-| 7 | Affichage conditionnel correct selon l'état du sondage, la date de fin et les droits d'accès, y compris l'accès anonyme aux résultats publics
+| 7 | Affichage conditionnel correct selon l'état du sondage, la date de fin et les droits d'accès, y compris l'accès aux résultats si publics
 | 8 | Consommation correcte des endpoints JSON par le frontend
 | 9 | Gestion correcte des erreurs utilisateur côté frontend
 | 10 | Interface lisible, claire, responsive et agréable à utiliser
