@@ -90,7 +90,7 @@ Fonctionnalités attendues :
 - afficher un sondage accessible via un token
 - permettre à une personne authentifiée de voter via ce lien
 - empêcher le vote après la date de fin d'un sondage avec durée, avec un affichage clair de cet état
-- permettre l'accès anonyme aux résultats uniquement lorsqu'ils sont publics
+- permettre l'accès aux résultats uniquement lorsqu'ils sont publics (ou si l'on est son propritaire)
 - afficher les résultats via polling avec un aperçu graphique visualisant leur évolution
 - garantir côté frontend et côté API l'unicité du vote pour les sondages à choix unique
 
