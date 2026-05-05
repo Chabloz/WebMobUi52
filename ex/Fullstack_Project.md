@@ -179,7 +179,7 @@ S’ensuivra une phase de questions où vous devriez être capable de :
 - Base de données relationnelle (`SQLite`, `MySQL` ou `PostgreSQL`)
 - Projet disponible sur GitHub
 - Une documentation minimale (`README.md`) doit permettre de tester facilement l'application
-- Les modèles et migrations sont fournis, mais les endpoints JSON nécessaires au frontend doivent
+- Les modèles et migrations sont fournis (mais sont modifiable). Les endpoints JSON nécessaires au frontend doivent
   être implémentés
 - L'usage de l'IA est autorisé, mais le code rendu doit être compris, maîtrisé et défendable à l'oral
 - Les critères liés à l'architecture, au découpage du code, au nommage et à la lisibilité auront une
