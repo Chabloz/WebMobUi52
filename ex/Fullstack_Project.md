@@ -155,6 +155,23 @@ Bonus possible : prise en charge du changement de vote lorsqu'un sondage l'autor
 | 4 | La compréhension théorique de Vue.js, des échanges frontend/backend et de l'architecture fullstack est bonne
 | 5 | La personne démontre qu'elle maîtrise réellement le code présenté, y compris si des outils d'IA ont été utilisés
 
+Vous devrez présenter votre architecture lors de l’oral en 10 min. Voici quelques points que votre présentation pourrait inclure :
+
+- Montrer les fonctionnalités implémentées via une courte démo de l’application (max. 5 min)
+- Expliquer pourquoi vous avez fait tel composant
+- Expliquer pourquoi vous êtes passé par un store, un composable ou autre
+- Expliquer la gestion des échanges front-back
+- Expliquer la stack technique et les bibliothèques utilisées
+
+S’ensuivra une phase de questions où vous devriez être capable de :
+
+- Expliquer un usage de la réactivité
+- Montrer la maîtrise de votre code (y compris celui de l'IA si utilisée)
+- Démontrer que vous comprenez l’architecture implémentée
+- Modifier en "live" votre code pour une adaptation mineure, comme par exemple le rajout d’une fonctionnalité simple
+- Répondre à des questions théoriques sur la réactivité (ex. : « Est-ce qu’une "computed" aurait aussi fait l’affaire à cet endroit ? », « Qu’apporte votre utilisation d’un store par rapport à un passage via des propriétés ? », etc.)
+
+
 ## Contraintes techniques
 
 - Backend Laravel >= 12.x
@@ -183,7 +200,7 @@ Bonus possible : prise en charge du changement de vote lorsqu'un sondage l'autor
 Vous devez fournir :
 
 - l'URL du dépôt GitHub
-- un fichier `README.md` clair pour expliquer l'installation et les choix techniques
+- un fichier `README.md` clair pour expliquer l'installation et les choix techniques (pas besoin de rentrer dans les détails)
 - Il est possible de mettre à jour le dépôt entre le jour du rendu et l'examen
 - Seul le code présent avant l'échéance sera évalué pour le rendu
 - Le code ajouté ou modifié après l'échéance ne sera pas évalué pour la note de rendu, mais pourra
